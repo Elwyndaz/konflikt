@@ -75,6 +75,13 @@ const FILES = {
   await sortBy('#').click();
   await page.evaluate(() => { scrollTo(0, 0); document.querySelector('.tabellram')?.scrollTo(0, 0); });
   if (process.argv[2]) await page.screenshot({ path: process.argv[2] });
+  // På en bred skärm ska hela tabellen rymmas: ingen sidrullning i ramen. 1440 px får rulla, 1920 får inte.
+  for (const width of [1920, 2560]) {
+    await page.setViewportSize({ width, height: 1080 });
+    const extra = await page.evaluate(() => { const r = document.querySelector('.tabellram'); return r ? r.scrollWidth - r.clientWidth : -1; });
+    if (extra !== 0) errors.push(`tabellen rullar i sidled vid ${width}px (${extra}px för bred)`);
+    if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', `-${width}.png`) });
+  }
   await page.setViewportSize({ width: 375, height: 800 });
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (overflow > 0) errors.push(`sidan är ${overflow}px bredare än skärmen i mobilvy`);

@@ -50,6 +50,7 @@ node check_page.js            # PASS eller FAIL med det som skilde
 - **`ClipboardItem` med både `text/plain` och `text/html`** gör att kursiven följer med till Word.
 - **Pilar i `::after` hamnar i knappens tillgängliga namn.** Skriv `content:"\2195" / ""`, riktningen kommer ändå från `aria-sort`.
 - **Klistrade celler kräver `border-collapse:separate`.** Med `collapse` följer kantlinjerna inte med och innehåll lyser igenom. En klistrad kolumn i mobil åt 70 % av bredden: slå bara på den från 760 px.
+- **Pröva bredare än den egna testskärmen.** Första versionen testades vid 1440 och 375 px och rullade i sidled på en bred skärm fast allt hade rymts: sajtens `.wrap` är låst till 1440 px och tabellen hade `width:max-content` med fasta kolumnbredder. Nu: `.wrap{max-width:none}` på den här sidan, `width:100%` på tabellen och bara `min-width` på textkolumnerna. `check_page.js` kräver noll sidrullning vid 1920 och 2560 px.
 - **Tomma värden sorteras sist åt båda hållen,** annars fyller de toppen vid fallande sortering.
 - **`sed` med bakstreck i Git Bash på Windows felar** ("Invalid back reference"). Använd redigeringsverktyget för CSS med `\2195` och liknande.
 

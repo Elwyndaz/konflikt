@@ -17,9 +17,12 @@
 .page-head .ingress{max-width:72ch}
 .forklaring{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:26px;font-size:14px;color:var(--brod)}
 .forklaring li{display:flex;align-items:center;gap:8px}
+/* Sajtens .wrap är låst till 1440 px. Här släpps taket: på en bred skärm ska hela tabellen rymmas utan sidrullning, och rubriken ska linjera med tabellens vänsterkant. */
+.wrap{max-width:none}
 .tabellram{margin:clamp(32px,4vw,56px) 0 0;max-height:78vh;overflow:auto;border:1px solid var(--linje);background:var(--papper)}
 /* separate, inte collapse: med collapse följer kantlinjerna inte med klistrade celler och innehåll lyser igenom. */
-.kallor{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums}
+/* width:100 %, inte max-content: textkolumnerna krymper till sin min-width innan ramen börjar rulla, och växer när det finns plats. */
+.kallor{border-collapse:separate;border-spacing:0;width:100%;font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums}
 .kallor th,.kallor td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linje);border-right:1px solid var(--linje);white-space:nowrap}
 .kallor th{position:sticky;top:0;z-index:2;background:var(--papper-mork);font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brod);padding:0}
 .kallor th:not(:has(button)){padding:12px 14px}
@@ -42,9 +45,9 @@
   .kallor th:nth-child(3){left:0;z-index:3}
 }
 .kallor .bred,.kallor .apa,.kallor .halvbred{white-space:normal}
-.kallor .bred{min-width:34ch;max-width:44ch}
-.kallor .halvbred{min-width:12ch;max-width:24ch}
-.kallor .apa{min-width:52ch;max-width:64ch}
+.kallor .bred{min-width:28ch}
+.kallor .halvbred{min-width:11ch}
+.kallor .apa{min-width:40ch}
 .kallor .apa a{color:var(--accent);overflow-wrap:anywhere}
 .kallor td:has(.kopiera){padding-right:48px;position:relative}
 .kopiera{all:unset;box-sizing:border-box;position:absolute;top:4px;right:4px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;color:var(--dampad);border:1px solid transparent;transition:color var(--t),border-color var(--t)}
