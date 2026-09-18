@@ -34,7 +34,7 @@ const FILES = {
 
   const sortBy = (name) => page.locator('thead').getByRole('button', { name, exact: true });
   const first = () => page.locator('tbody tr').first().locator('td.text').innerText();
-  const lastYear = () => page.locator('tbody tr').last().locator('td').nth(3).innerText();
+  const lastYear = () => page.locator('tbody tr').last().locator('td').nth(4).innerText();
   const expect = (what, got, want) => { if (got !== want) errors.push(`${what}: fick ${JSON.stringify(got)}, väntade ${JSON.stringify(want)}`); };
 
   expect('antal rader', await page.locator('tbody tr').count(), JSON.parse(fs.readFileSync(path.join(__dirname, 'sources.json'), 'utf8')).length);
@@ -58,6 +58,10 @@ const FILES = {
   expect('svensk bokstavsordning, Å sist', await page.locator('tbody tr').last().locator('td.text').innerText(), 'Ågotnes m.fl.');
 
   const row = page.locator('tbody tr', { hasText: 'Yuan m.fl.' });
+  const titel = row.locator('td.titel a');
+  expect('titelns länk', await titel.getAttribute('href'), 'https://doi.org/10.1037/apl0001315');
+  expect('titelns text', (await titel.innerText()).slice(0, 38), 'The paradox of team conflict revisited');
+  expect('ingen länkkolumn kvar', await page.locator('thead th').count(), 11);
   // Klicket returnerar innan den asynkrona skrivningen är klar: vänta på klassen som sätts efteråt.
   const copy = async (label) => {
     await row.getByRole('button', { name: label }).click();

@@ -41,7 +41,11 @@ for nr, r in enumerate(rows, 1):
     lopande = f'{r["cite"].replace(" & ", " och ")} ({year})'
     parentes = f'({r["cite"]}, {year})'
     apa = f'{italics(r["apa"])} <a href="{escape(r["url"])}">{escape(r["url"])}</a>'
-    kind = "DOI" if "doi.org" in r["url"] else "Webb"
+    # Titeln står redan i APA-posten: kursiv direkt efter året (bok, rapport) eller rak text fram till tidskriften.
+    # "titel" i sources.json går före, för poster där regeln inte räcker (bokkapitel).
+    rest = r["apa"].split(f"({year}). ", 1)[1]
+    titel = r.get("titel") or (rest.split("*")[1] if rest.startswith("*") else rest.split(" *")[0]).rstrip(".")
+    assert 10 < len(titel) < 200 and "(Red.)" not in titel, f"rad {nr}: orimlig titel {titel[:60]!r}, sätt 'titel' i sources.json"
     g, cit = r["grupp"], r["cit"]
     cit_sort = "" if cit is None else cit
     cit_text = "" if cit is None else nbsp(f"{cit:,}".replace(",", " "))
@@ -49,21 +53,20 @@ for nr, r in enumerate(rows, 1):
         f'<tr><td class="num" data-sort="{nr}">{nr}</td>'
         f'<td data-sort="{g}"><span class="grupp grupp-{g.lower()}" title="{GROUPS[g]}">{g}</span></td>'
         f'<td class="text">{escape(r["kort"])}</td>'
+        f'<td class="titel"><a href="{escape(r["url"])}" rel="noopener">{escape(titel)}</a></td>'
         f'<td class="num" data-sort="{r["ar"] or ""}">{year}</td>'
         f'<td class="num" data-sort="{cit_sort}">{cit_text}</td>'
         f'<td class="bred">{escape(nbsp(r["pop"]))}</td>'
         f'<td class="halvbred" data-sort="{r.get("n", "")}">{escape(nbsp(r["studier"] or ""))}</td>'
         f'<td class="apa">{cell_copy(apa, "APA-referensen")}</td>'
         f'<td class="kort">{cell_copy(escape(lopande), "hänvisningen i löptext")}</td>'
-        f'<td class="kort">{cell_copy(escape(parentes), "hänvisningen inom parentes")}</td>'
-        f'<td><a class="mono-link" href="{escape(r["url"])}" rel="noopener">{kind}&nbsp;&rarr;</a></td></tr>'
+        f'<td class="kort">{cell_copy(escape(parentes), "hänvisningen inom parentes")}</td></tr>'
     )
 
-HEAD = [("#", "num", "ascending"), ("Grupp", "", ""), ("Text", "", ""), ("År", "num", ""), ("Citeringar", "num", ""),
-        ("Undersökt population", "", ""), ("Antal studier", "num", ""), ("APA-referens", "", ""),
-        ("I löptext", "", ""), ("Inom parentes", "", ""), ("Länk", None, "")]
+HEAD = [("#", "num", "ascending"), ("Grupp", "", ""), ("Text", "", ""), ("Titel", "", ""), ("År", "num", ""),
+        ("Citeringar", "num", ""), ("Undersökt population", "", ""), ("Antal studier", "num", ""),
+        ("APA-referens", "", ""), ("I löptext", "", ""), ("Inom parentes", "", "")]
 ths = "".join(
-    f"<th>{name}</th>" if typ is None else
     f'<th data-type="{typ}"' + (f' aria-sort="{sort}"' if sort else "") + f'><button type="button">{name}</button></th>'
     for name, typ, sort in HEAD)
 legend = "".join(f'<li><span class="grupp grupp-{k.lower()}">{k}</span> {v}</li>' for k, v in GROUPS.items())

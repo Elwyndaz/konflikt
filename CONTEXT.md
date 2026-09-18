@@ -2,7 +2,7 @@
 
 ## Vad det här är
 
-En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 41 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes, länk. Referenserna har en kopieringsknapp som tar med kursiven.
+En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 41 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, kortnamn, klickbar titel (länkar till DOI eller webbadress), år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes. Någon egen länkkolumn finns inte: länken sitter i titeln och sist i APA-referensen. Referenserna har en kopieringsknapp som tar med kursiven.
 
 Repot är också minnet inför nästa liknande uppdrag: arbetssättet står i `AGENTS.md`.
 
@@ -26,7 +26,7 @@ GitHub Pages på gratisnivån kräver ett publikt repo. Därför ligger bara så
 
 `grupp` (A läs hela, B abstract plus ett ställe, C bara abstract, D hoppa över), `kort` (visningsnamn), `cite` (författardelen i en hänvisning, med `&`), `ar` (heltal eller `null` för u.å.), `cit` (Crossref-citeringar eller `null`), `pop`, `studier` (visad text eller `null`), `n` (tal att sortera antal studier på, valfritt), `apa` (referensen utan länk, `*kursiv*`), `url`.
 
-Löptext och parentes räknas fram i `build.py` ur `cite` och `ar`: `&` blir `och` i löptext. Radnumret är postens plats i filen, alltså läsordningen.
+Löptext och parentes räknas fram i `build.py` ur `cite` och `ar`: `&` blir `och` i löptext. Titeln läses ur `apa` (kursiven direkt efter året, annars texten fram till tidskriften). Fältet `titel` går före och behövs bara där regeln inte räcker, i dag bokkapitlet av Glasl. Radnumret är postens plats i filen, alltså läsordningen.
 
 ## Design
 

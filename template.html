@@ -25,7 +25,6 @@
 .kallor{border-collapse:separate;border-spacing:0;width:100%;font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums}
 .kallor th,.kallor td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linje);border-right:1px solid var(--linje);white-space:nowrap}
 .kallor th{position:sticky;top:0;z-index:2;background:var(--papper-mork);font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brod);padding:0}
-.kallor th:not(:has(button)){padding:12px 14px}
 .kallor th button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:6px;width:100%;min-height:44px;padding:12px 14px;cursor:pointer}
 /* "/ ''" ger pilen tom alt-text: skärmläsare får riktningen av aria-sort, inte av tecknet. */
 .kallor th button::after{content:"\2195" / "";color:var(--dampad);font-size:13px}
@@ -44,10 +43,15 @@
   .kallor td.text{position:sticky;left:0;z-index:1}
   .kallor th:nth-child(3){left:0;z-index:3}
 }
-.kallor .bred,.kallor .apa,.kallor .halvbred{white-space:normal}
-.kallor .bred{min-width:28ch}
+.kallor .bred,.kallor .apa,.kallor .halvbred,.kallor .titel,.kallor .kort,.kallor td.text{white-space:normal}
+.kallor .kort{min-width:17ch}
+.kallor td.text{min-width:13ch}
+.kallor .titel{min-width:24ch}
+.kallor .titel a{color:var(--black);text-decoration-color:var(--accent);text-underline-offset:3px;transition:color var(--t)}
+.kallor .titel a:hover{color:var(--accent)}
+.kallor .bred{min-width:26ch}
 .kallor .halvbred{min-width:11ch}
-.kallor .apa{min-width:40ch}
+.kallor .apa{min-width:36ch}
 .kallor .apa a{color:var(--accent);overflow-wrap:anywhere}
 .kallor td:has(.kopiera){padding-right:48px;position:relative}
 .kopiera{all:unset;box-sizing:border-box;position:absolute;top:4px;right:4px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;color:var(--dampad);border:1px solid transparent;transition:color var(--t),border-color var(--t)}
