@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Olänkad arbetssida: ska inte indexeras. robots.txt får INTE spärra den, då ser Google aldrig noindex. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" sizes="512x512" href="/logo.png"><link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Konflikt: källor och läsordning | Centrum för Organisations-Utveckling</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<!-- Sajtens designsystem, samma fil som resten av orgutveckling.se. Bara tabellen stilas här. -->
+<link rel="stylesheet" href="/style.css">
+<style>
+.page-head h1{max-width:none}
+.page-head .ingress{max-width:72ch}
+.forklaring{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:26px;font-size:14px;color:var(--brod)}
+.forklaring li{display:flex;align-items:center;gap:8px}
+.tabellram{margin:clamp(32px,4vw,56px) 0 0;max-height:78vh;overflow:auto;border:1px solid var(--linje);background:var(--papper)}
+/* separate, inte collapse: med collapse följer kantlinjerna inte med klistrade celler och innehåll lyser igenom. */
+.kallor{border-collapse:separate;border-spacing:0;width:max-content;min-width:100%;font-size:14px;line-height:1.5;font-variant-numeric:tabular-nums}
+.kallor th,.kallor td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--linje);border-right:1px solid var(--linje);white-space:nowrap}
+.kallor th{position:sticky;top:0;z-index:2;background:var(--papper-mork);font:500 11px/1.4 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--brod);padding:0}
+.kallor th:not(:has(button)){padding:12px 14px}
+.kallor th button{all:unset;box-sizing:border-box;display:flex;align-items:center;gap:6px;width:100%;min-height:44px;padding:12px 14px;cursor:pointer}
+/* "/ ''" ger pilen tom alt-text: skärmläsare får riktningen av aria-sort, inte av tecknet. */
+.kallor th button::after{content:"\2195" / "";color:var(--dampad);font-size:13px}
+.kallor th[aria-sort] button{color:var(--accent)}
+.kallor th[aria-sort="ascending"] button::after{content:"\2191" / "";color:var(--accent)}
+.kallor th[aria-sort="descending"] button::after{content:"\2193" / "";color:var(--accent)}
+.kallor th button:hover{background:var(--papper)}
+.kallor th button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.kallor tbody tr:hover td{background:rgba(168,67,31,.06)}
+.kallor .num{text-align:right}
+.kallor th[data-type="num"] button{justify-content:flex-end}
+.kallor td.text{background:var(--papper);font-family:var(--serif);font-size:16px}
+.kallor tbody tr:hover td.text{background:#EDE5DC}
+/* Textkolumnen står kvar vid sidrullning, men bara där skärmen har råd: i mobil åt den 70 % av bredden. */
+@media(min-width:760px){
+  .kallor td.text{position:sticky;left:0;z-index:1}
+  .kallor th:nth-child(3){left:0;z-index:3}
+}
+.kallor .bred,.kallor .apa,.kallor .halvbred{white-space:normal}
+.kallor .bred{min-width:34ch;max-width:44ch}
+.kallor .halvbred{min-width:12ch;max-width:24ch}
+.kallor .apa{min-width:52ch;max-width:64ch}
+.kallor .apa a{color:var(--accent);overflow-wrap:anywhere}
+.kallor td:has(.kopiera){padding-right:48px;position:relative}
+.kopiera{all:unset;box-sizing:border-box;position:absolute;top:4px;right:4px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;color:var(--dampad);border:1px solid transparent;transition:color var(--t),border-color var(--t)}
+.kopiera:hover{color:var(--accent);border-color:var(--accent)}
+.kopiera:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.kopiera.klar{color:var(--papper);background:var(--accent)}
+.grupp{display:inline-grid;place-items:center;width:24px;height:24px;font:500 12px/1 var(--mono);color:var(--papper);background:var(--dampad)}
+.grupp-a{background:var(--accent)}.grupp-b{background:var(--black)}.grupp-c{background:var(--dampad)}.grupp-d{background:var(--papper-mork);color:var(--brod)}
+.fot{margin:22px 0 clamp(60px,8vw,110px);font-size:13.5px;color:var(--brod-ljus)}
+.fot p{max-width:90ch;margin-top:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+</style>
+</head>
+<body>
+
+<a href="#innehall" class="skip-link">Hoppa till innehållet</a>
+
+<header class="site-header">
+  <a href="/" class="wordmark"><span class="a">ORG</span><span class="slash">/</span><span class="b">UTVECKLING</span></a>
+</header>
+
+<main id="innehall">
+<div class="wrap">
+  <div class="page-head">
+    <p class="eyebrow">Arbetsmaterial &middot; Konflikthantering &middot; {{checked}}</p>
+    <h1>Källor och läsordning</h1>
+    <p class="ingress">{{n}} texter bakom ett föredrag om konflikter på jobbet. Ursprungsordningen är läsordningen. Klicka på en kolumnrubrik för att sortera, en gång till för att vända. Kopieringsknappen tar med kursiven till Word.</p>
+    <ul class="forklaring">{{legend}}</ul>
+  </div>
+
+  <div class="tabellram" tabindex="0" role="region" aria-label="Källtabell, går att rulla i sidled">
+    <table class="kallor">
+      <caption class="sr-only">Källor med år, citeringar, population, antal studier och APA-hänvisningar</caption>
+      <thead><tr>{{ths}}</tr></thead>
+      <tbody>
+{{rows}}
+      </tbody>
+    </table>
+  </div>
+  <p id="status" class="sr-only" role="status" aria-live="polite"></p>
+
+  <div class="fot">
+    <p>Citeringar enligt Crossref {{checked}}. Crossref räknar bara citeringar från verk med DOI, så Google Scholar visar ofta två till tre gånger högre tal. Låga tal betyder ofta ny artikel, inte svag artikel.</p>
+    <p>Population och antal studier kommer ur artiklarnas abstract, hämtade {{checked}}. En asterisk (*) betyder att uppgiften kommer från läsning av fulltexten. Tom ruta under Antal studier betyder primärstudie eller teoritext.</p>
+    <p>Hänvisningarna följer APA 7 på svenska: m.fl. från första hänvisningen vid tre eller fler författare, och i löptext, &amp; inom parentes.</p>
+  </div>
+</div>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
