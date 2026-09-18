@@ -22,7 +22,7 @@ def italics(s):
 
 
 def nbsp(s):
-    return re.sub(r"(?<=\d) (?=\d{3}\b)", " ", s)
+    return re.sub(r"(?<=\d) (?=\d{3}\b)", chr(0xA0), s)  # hårt blanksteg, så 4 040 inte bryts
 
 
 def cell_copy(html, label):
@@ -36,7 +36,7 @@ for nr, r in enumerate(rows, 1):
     assert r["grupp"] in GROUPS, f"rad {nr}: okänd grupp"
     assert r["url"].startswith("https://"), f"rad {nr}: länk utan https"
     assert f"({year})" in r["apa"], f"rad {nr}: året {year} saknas i APA-posten"
-    assert "—" not in json.dumps(r, ensure_ascii=False), f"rad {nr}: tankstreck"
+    assert chr(0x2014) not in json.dumps(r, ensure_ascii=False), f"rad {nr}: tankstreck"
     assert r["cite"].split()[0] in r["apa"], f"rad {nr}: cite matchar inte APA-posten"
     lopande = f'{r["cite"].replace(" & ", " och ")} ({year})'
     parentes = f'({r["cite"]}, {year})'
