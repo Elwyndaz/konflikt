@@ -4,11 +4,15 @@
 
 En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 41 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, kortnamn, klickbar titel (länkar till DOI eller webbadress), år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes. Någon egen länkkolumn finns inte: länken sitter i titeln och sist i APA-referensen. Referenserna har en kopieringsknapp som tar med kursiven.
 
+Sidan har också en nedladdningsruta överst: deltagarna hämtar bildspelet därifrån.
+
 Repot är också minnet inför nästa liknande uppdrag: arbetssättet står i `AGENTS.md`.
 
 ## Vad som INTE ligger här, och varför
 
-GitHub Pages på gratisnivån kräver ett publikt repo. Därför ligger bara sådant som tål att vara offentligt här. Presentationen, talarmanuset, läslistan och alla PDF:er (upphovsrättsskyddade) ligger i en arbetsmapp utanför `C:\dev`. Sökvägen står i valvets dagsnot 2026-09-18.
+GitHub Pages på gratisnivån kräver ett publikt repo. Därför ligger bara sådant som tål att vara offentligt här. Talarmanuset, läslistan och alla PDF:er (upphovsrättsskyddade) ligger i en arbetsmapp utanför `C:\dev`. Sökvägen står i valvets dagsnot 2026-09-18.
+
+Bildspelet låg tidigare bara i arbetsmappen. Patrik beslöt 2026-09-21 att publicera det här, i sin helhet, så att deltagarna kan ladda ner det. Det betyder att talarstödet i anteckningsfältet är offentligt, inklusive de egna förbehållen om enskilda studier. Vill man ta bort dem behövs en separat deltagarversion utan anteckningar.
 
 ## Filer
 
@@ -20,6 +24,7 @@ GitHub Pages på gratisnivån kräver ett publikt repo. Därför ligger bara så
 | `index.html` | Byggd fil, incheckad eftersom Pages serverar repot rakt av. Redigera aldrig för hand. |
 | `app.js` | Sortering och kopiering, ren JS med `// @ts-check`. |
 | `check_page.js` | Prövar den byggda sidan i Chromium: sortering, kopiering, mobilbredd. |
+| `konfliktkompetens.pptx` | Bildspelet som deltagarna laddar ner. Kopia av arbetsmappens `Konfliktkompetens_f_r_ABF_Sverige_v3.pptx`, byt ut den filen här när den ändras. |
 | `.nojekyll` | Stänger av Jekyll på Pages, så filerna serveras som de är. |
 
 ## Datamodell (`sources.json`)

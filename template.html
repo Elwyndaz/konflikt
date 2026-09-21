@@ -17,6 +17,11 @@
 .page-head .ingress{max-width:72ch}
 .forklaring{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:26px;font-size:14px;color:var(--brod)}
 .forklaring li{display:flex;align-items:center;gap:8px}
+.hamta{margin-top:26px;padding:18px 22px;border:1px solid var(--linje);background:var(--papper-mork);max-width:72ch}
+.hamta p{margin:0}
+.hamta p+p{margin-top:8px;font-size:14px;color:var(--brod)}
+.hamta a{font-family:var(--serif);font-size:18px;color:var(--black);text-decoration-color:var(--accent);text-underline-offset:3px;transition:color var(--t)}
+.hamta a:hover{color:var(--accent)}
 /* Sajtens .wrap är låst till 1440 px. Här släpps taket: på en bred skärm ska hela tabellen rymmas utan sidrullning, och rubriken ska linjera med tabellens vänsterkant. */
 .wrap{max-width:none}
 .tabellram{margin:clamp(32px,4vw,56px) 0 0;max-height:78vh;overflow:auto;border:1px solid var(--linje);background:var(--papper)}
@@ -80,6 +85,12 @@
     <h1>Källor och läsordning</h1>
     <p class="ingress">{{n}} texter bakom ett föredrag om konflikter på jobbet. Ursprungsordningen är läsordningen. Klicka på en kolumnrubrik för att sortera, en gång till för att vända. Kopieringsknappen tar med kursiven till Word.</p>
     <ul class="forklaring">{{legend}}</ul>
+  </div>
+
+  <div class="hamta">
+    <p class="eyebrow">Föredraget</p>
+    <p><a href="konfliktkompetens.pptx" download>Ladda ner bildspelet</a></p>
+    <p>PowerPoint, 279&nbsp;kB. 37 bilder, varav sju dolda extrabilder. Talarstöd och fullständiga källhänvisningar ligger i anteckningsfältet.</p>
   </div>
 
   <div class="tabellram" tabindex="0" role="region" aria-label="Källtabell, går att rulla i sidled">

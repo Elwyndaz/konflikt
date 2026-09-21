@@ -4,10 +4,12 @@ status: active
 currentGoal: Källtabellen ska stämma och vara användbar inför föredraget 2026-09-21.
 nextAction: Patrik läser grupp A i tabellens ordning och svarar på P1-punkterna i BACKLOG.md. Rättelser förs in i sources.json, sedan build.py, kontrollerna och push.
 blockers: []
-reviewedAt: 2026-09-18
+reviewedAt: 2026-09-21
 ---
 
 # HANDOFF
+
+Bildspelet ligger sedan 2026-09-21 i repot som `konfliktkompetens.pptx`, med en nedladdningsruta överst på sidan. Filstorleken står i klartext i `template.html`: byts filen ut måste siffran följa med. Beslutet att publicera hela filen, talarstöd och allt, står i `CONTEXT.md`.
 
 Sidan byggdes och publicerades 2026-09-18. Citeringar och abstract hämtades samma dag (datumet står som `CHECKED` i `build.py`, ändra det när siffrorna hämtas om).
 
