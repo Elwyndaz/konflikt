@@ -40,3 +40,12 @@ Sidan länkar `/style.css` från orgutveckling.se (repot `elwyndaz.github.io`) o
 ## Hosting och synlighet
 
 Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.github.io` har domänen orgutveckling.se hamnar repot på `/konflikt/` utan egen DNS. Sidan har `noindex, nofollow` och är inte länkad från sajten eller sitemap. Den får inte spärras i `robots.txt`: då läser Google aldrig `noindex`.
+
+## Audits
+- Headers (automated): 2026-10-06, fail, 1 targets; 1 failed, 0 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
+- npm audit (automated): 2026-10-06, n/a, No package.json in repository; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
+- Secrets (automated): 2026-10-06, pass, 2 targets; 0 failed, 0 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
+- Actions (automated): 2026-10-06, n/a, no GitHub Actions workflows; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
+- Markup (automated): 2026-10-06, blocked, 1 targets; 0 failed, 1 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
+- WCAG 2.2 AA (automated): 2026-10-06, fail, 1 targets; 1 failed, 0 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
+

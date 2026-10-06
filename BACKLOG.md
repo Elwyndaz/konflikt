@@ -26,3 +26,9 @@
 ## Sidan
 
 - [ ] `[P3]` Filter per grupp (A till D) om tabellen börjar användas mer än som referens. Sortering på gruppkolumnen räcker i dag.
+
+## Granskning 2026-10-06
+
+Fynd från den automatiska sviten (aifabriken `tools/audit-suite.ts`: headers, npm audit, secrets, Actions, markup, axe). Mätvärdena står som `(automated)`-rader under `## Audits` i CONTEXT.md.
+
+- [ ] `[P2]` WCAG: `.hamta > .eyebrow` har kontrast 4,04:1 (#6b675c på #dfdacd, 11 px). Kravet är 4,5:1.
