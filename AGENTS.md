@@ -22,6 +22,7 @@ node check_page.js            # PASS eller FAIL med det som skilde
 - **Crossref-citeringar är lägre än Google Scholar** (bara verk med DOI räknas). Jämför inom listan, inte mot Scholar. Lågt tal betyder oftast ny artikel.
 - **Databasernas år är ofta nätåret.** APA vill ha tryckåret: ta volym, häfte och år ur Crossref `published-print`.
 - **PDF utan textlager går inte att ordsöka.** Säg det och flagga påståendet som okontrollerat i stället för att tillskriva ur minnet.
+- **Textlager kan vara trasigt i stället för saknat.** Jordans PDF:er på gu.se (utskrivna ur Firefox) ger teckensallad i både pypdf och pymupdf. Rendera sidorna (`page.get_pixmap(dpi=75).save(...)` i pymupdf) och läs bilderna: 15 sidor går fort.
 - **pypdf skriver hundratals kB varningar på stderr.** Kör med `2>/dev/null` och låt skriptet skriva egna korta träffrader.
 - **Påstå inte mer än källan bär.** "Konflikt är nyttigt" ströks ur föredraget eftersom metaanalysen visar negativa samband för alla fyra konflikttyper. Samband är inte orsak: skriv "hänger ihop med".
 
@@ -37,6 +38,7 @@ node check_page.js            # PASS eller FAIL med det som skilde
 - **Före varje skrivning:** finns en `~$`-låsfil är filen öppen, avbryt. Kopiera originalet till en tillfällig mapp. Skriv till en kopia, kontrollera, kopiera sedan över.
 - **Byt text med `run.text`, inte genom att skapa nya stycken.** Typsnitt, storlek och färg sitter på run-nivå och ärvs då gratis.
 - **Patchskript ska kunna misslyckas högt:** `assert text.count(old) == 1` per ersättning, och en vakt som vägrar köra två gånger.
+- **En enstaka textändring: byt strängen i bildens XML-del och skriv om zip-filen med övriga delar orörda** (`zipfile`, `writestr(info, data)` i samma ordning). Då går det att kräva att exakt en del skiljer i bytes. python-pptx serialiserar om alla 159 delar för samma ändring. Kräv att strängen finns i exakt en del, exakt en gång.
 - **Jämför innebörd, inte bytes.** En pptx är en zip med XML som serialiseras om vid varje sparning, så en byte-jämförelse larmar på allt. Jämför form, position, text och dold-flagga per bild.
 - **Talarmanus:** pptxgenjs lägger hela manuset i ett stycke med råa radmatningar. Dela upp det i riktiga stycken. Länk sätts med `run.hyperlink.address`. PowerPoints `NotesPage.Hyperlinks` ger 0 ändå: räkna `Run.ActionSettings(1).Hyperlink.Address` per textkörning över COM.
 - **Rendera med PowerPoint över COM** (`Presentations.Open(path, $true, $false, $false)`, `Slide.Export(png, "PNG", 1600, 900)`). Det är exakt den bild användaren själv ser. Rendera till en ny tom mapp.

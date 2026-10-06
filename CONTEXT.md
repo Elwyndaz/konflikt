@@ -24,7 +24,7 @@ Bildspelet låg tidigare bara i arbetsmappen. Patrik beslöt 2026-09-21 att publ
 | `index.html` | Byggd fil, incheckad eftersom Pages serverar repot rakt av. Redigera aldrig för hand. |
 | `app.js` | Sortering och kopiering, ren JS med `// @ts-check`. |
 | `check_page.js` | Prövar den byggda sidan i Chromium: sortering, kopiering, mobilbredd. |
-| `konfliktkompetens.pptx` | Bildspelet som deltagarna laddar ner. Kopia av arbetsmappens `Konfliktkompetens_f_r_ABF_Sverige_v3.pptx`, byt ut den filen här när den ändras. |
+| `konfliktkompetens.pptx` | Bildspelet som deltagarna laddar ner. Kopia av arbetsmappens `Konfliktkompetens_f_r_ABF_Sverige_v3.pptx`, byt ut den filen här när den ändras. Sedan 2026-10-06 skiljer den sig från v3 på ett ställe: årtalet i källraden på bild 24 (2014, v3 har 2006). |
 | `.nojekyll` | Stänger av Jekyll på Pages, så filerna serveras som de är. |
 
 ## Datamodell (`sources.json`)
