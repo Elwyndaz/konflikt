@@ -76,6 +76,19 @@ const FILES = {
   });
   if (!html.includes('<i>Journal of Applied Psychology, 111</i>')) errors.push('kursiven följde inte med i kopian: ' + html.slice(0, 120));
 
+  // WCAG 1.4.3: liten text i nedladdningsrutan ska ha minst 4,5:1 mot rutans bakgrund.
+  const kontrast = await page.evaluate(() => {
+    const lum = (/** @type {string} */ c) => {
+      const [r, g, b] = (c.match(/[\d.]+/g) || []).slice(0, 3).map((v) => { const s = +v / 255; return s <= 0.03928 ? s / 12.92 : ((s + 0.055) / 1.055) ** 2.4; });
+      return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    };
+    const ruta = document.querySelector('.hamta'), text = document.querySelector('.hamta .eyebrow');
+    if (!ruta || !text) return 0;
+    const [a, b] = [lum(getComputedStyle(text).color), lum(getComputedStyle(ruta).backgroundColor)].sort((x, y) => y - x);
+    return (a + 0.05) / (b + 0.05);
+  });
+  if (kontrast < 4.5) errors.push(`kontrast .hamta .eyebrow ${kontrast.toFixed(2)}:1, kravet är 4,5:1`);
+
   await sortBy('#').click();
   await page.evaluate(() => { scrollTo(0, 0); document.querySelector('.tabellram')?.scrollTo(0, 0); });
   if (process.argv[2]) await page.screenshot({ path: process.argv[2] });
