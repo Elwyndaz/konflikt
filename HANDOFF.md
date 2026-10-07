@@ -2,9 +2,9 @@
 schemaVersion: 1
 status: active
 currentGoal: Källtabellen ska stämma och vara användbar inför föredraget 2026-09-21.
-nextAction: Patrik granskar grenen batch/2026-10-06 och slår ihop den med main (då går ändringarna live på Pages). Sedan P1-punkterna i BACKLOG.md, först årtalet för Konfliktkunskapens ABC (2013 enligt PDF:en, 2006 i materialet).
+nextAction: P1-punkterna i BACKLOG.md, först årtalet för Konfliktkunskapens ABC (2013 enligt PDF:en, 2006 i materialet).
 blockers: []
-reviewedAt: 2026-10-06
+reviewedAt: 2026-10-07
 ---
 
 # HANDOFF
@@ -23,7 +23,7 @@ Cross-project run from elwyn-dash with aifabriken `tools/audit-suite.ts` (header
 
 ## Nattbatch 2026-10-06, grenen `batch/2026-10-06`
 
-Fyra commits ovanpå `main`, inget sammanfogat och inget live. Pages serverar `main`, så sidan och den nedladdade filen ändras först vid sammanslagning.
+Fyra commits, sammanfogade med `main` och live på Pages 2026-10-07 på Patriks order. Pages serverar `main`, så sidan och den nedladdade filen är nu de nya.
 
 - Kontrasten i nedladdningsrutan rättad, `check_page.js` fäller under 4,5:1.
 - `sources.json`: Hao m.fl. har 168 urval, Juncadella 14 studier kontrollerat i fulltext. De två uppgifterna hämtades 2026-10-06, sidfoten och `CHECKED` säger fortfarande 2026-09-18 eftersom citeringarna inte hämtades om.

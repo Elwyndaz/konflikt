@@ -33,4 +33,4 @@
 
 Fynd från den automatiska sviten (aifabriken `tools/audit-suite.ts`: headers, npm audit, secrets, Actions, markup, axe). Mätvärdena står som `(automated)`-rader under `## Audits` i CONTEXT.md.
 
-- [x] `[P2]` WCAG: `.hamta > .eyebrow` har kontrast 4,04:1 (#6b675c på #dfdacd, 11 px). Kravet är 4,5:1. **Rättat 2026-10-06:** `.hamta .eyebrow` får `--brod` i `template.html`, och `check_page.js` räknar kontrasten och fäller under 4,5:1. Inte live förrän grenen `batch/2026-10-06` är sammanfogad med `main`.
+- [x] `[P2]` WCAG: `.hamta > .eyebrow` har kontrast 4,04:1 (#6b675c på #dfdacd, 11 px). Kravet är 4,5:1. **Rättat 2026-10-06:** `.hamta .eyebrow` får `--brod` i `template.html`, och `check_page.js` räknar kontrasten och fäller under 4,5:1. Grenen `batch/2026-10-06` sammanfogad med `main` och live 2026-10-07.
