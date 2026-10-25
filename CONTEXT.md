@@ -48,4 +48,6 @@ Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.g
 - Actions (automated): 2026-10-06, n/a, no GitHub Actions workflows; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
 - Markup (automated): 2026-10-06, blocked, 1 targets; 0 failed, 1 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
 - WCAG 2.2 AA (automated): 2026-10-06, fail, 1 targets; 1 failed, 0 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
+- OG image: 2026-10-25, fail, no og:image tag on https://orgutveckling.se/konflikt/
+- Database: 2026-10-25, none, static site
 
