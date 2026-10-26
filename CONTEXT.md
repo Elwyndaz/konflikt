@@ -50,4 +50,4 @@ Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.g
 - WCAG 2.2 AA (automated): 2026-10-06, fail, 1 targets; 1 failed, 0 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
 - OG image: 2026-10-25, fail, no og:image tag on https://orgutveckling.se/konflikt/
 - Database: 2026-10-25, none, static site
-
+- OWASP Top 10: 2026-10-26, pass, code review (Gemini 3.8 Flash, reviewed by Claude); 0 findings
