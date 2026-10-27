@@ -48,7 +48,7 @@ Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.g
 - Actions (automated): 2026-10-06, n/a, no GitHub Actions workflows; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
 - Markup (automated): 2026-10-06, blocked, 1 targets; 0 failed, 1 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
 - WCAG 2.2 AA (automated): 2026-10-27, needs-review, axe 4.14.0 0 violations on orgutveckling.se/konflikt (mobile, one page); manual keyboard pass not done
-- OG image: 2026-10-25, fail, no og:image tag on https://orgutveckling.se/konflikt/
+- OG image: 2026-10-27, pass, 1200x630 PNG, https://orgutveckling.se/konflikt/og.png, screenshot of the top of the page, checked live and by eye
 - Database: 2026-10-25, none, static site
 - OWASP Top 10: 2026-10-26, pass, code review (Gemini 3.8 Flash, reviewed by Claude); 0 findings
 - ZAP baseline: 2026-10-27, n/a, static site on GitHub Pages with no server, cookies or forms; headers, TLS and markup are covered by their own columns, so a passive ZAP scan would repeat them
