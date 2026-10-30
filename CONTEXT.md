@@ -50,7 +50,7 @@ Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.g
 - WCAG 2.2 AA (automated): 2026-10-27, needs-review, axe 4.14.0 0 violations on orgutveckling.se/konflikt (mobile, one page); manual keyboard pass not done
 - OG image: 2026-10-27, pass, 1200x630 PNG, https://orgutveckling.se/konflikt/og.png, screenshot of the top of the page, checked live and by eye
 - Database: 2026-10-25, none, static site
-- OWASP Top 10: 2026-10-26, pass, code review (Gemini 3.8 Flash, reviewed by Claude); 0 findings
+- OWASP Top 10: 2026-10-30, pass, code review (Mistral Large; Claude read only the verdict line, lows unread), no live probe; 0 high, 0 medium reported
 - ZAP baseline: 2026-10-27, n/a, static site on GitHub Pages with no server, cookies or forms; headers, TLS and markup are covered by their own columns, so a passive ZAP scan would repeat them
 - Dependabot: 2026-10-29, pass, 0 open alerts
 - UX (automated): 2026-10-30, warn, 5 of 6 script checks pass on orgutveckling.se/konflikt (no --interact): warn Fitts targets; screenshot review not done
