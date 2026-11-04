@@ -2,7 +2,7 @@
 schemaVersion: 1
 status: active
 currentGoal: Källtabellen ska stämma och vara användbar inför föredraget 2026-09-21.
-nextAction: P1-punkterna i BACKLOG.md, först årtalet för Konfliktkunskapens ABC (2013 enligt PDF:en, 2006 i materialet).
+nextAction: Patrik granskar källkontrollen 2026-11-04 (PR #3) och för över ändringarna i bildspelet till arbetsmappens v3.
 blockers: []
 reviewedAt: 2026-10-07
 ---
@@ -20,6 +20,18 @@ Efter föredraget: sätt `status: done` när P1-punkterna är avgjorda. Repot st
 ## Automated audit batch, 2026-10-06
 
 Cross-project run from elwyn-dash with aifabriken `tools/audit-suite.ts` (headers, npm audit, secrets, Actions, markup, axe at one mobile viewport; TLS and Lighthouse not run). Results are the `(automated)` lines under `## Audits` in CONTEXT.md, findings under `## Granskning 2026-10-06` in BACKLOG.md. axe fail (one contrast violation); markup 0 findings, 41 external links outside the suite's scope; headers fail because the orgutveckling.se CSP allows `script-src 'unsafe-inline'` (item in elwyndaz.github.io). No application code or deployment changed. `reviewedAt` was left alone: the goal and next action above were not reviewed.
+
+## Källkontroll 2026-11-04, grenen `claude/kallor-2026-11-04` (PR #3, inte mergad)
+
+De fyra P1-punkterna om källor är avgjorda, med citat och sidor i `BACKLOG.md`. Ändringarna ligger i repots `konfliktkompetens.pptx`, `sources.json`, `og.png` och den byggda sidan. Arbetsmappens v3 är inte rörd, så den skiljer sig nu på fler ställen (ny P1-punkt under Presentationen).
+
+- DeChurch m.fl. (2013) läst i fulltext: 13 % på s. 563, 2 % på s. 564. Bild 15 hänvisar direkt, utan O'Neill och McLarnon som mellanled.
+- "En enstaka timme ger liten effekt utan övning" omformulerat på bild 22 och 26 med Lacerenza m.fl. (2017) som källa. Ny rad i `sources.json`, 42 texter, `og.png` omtagen.
+- Bild 13: stödet för Glasls modell hos Scheppa-Lahyani och Zapf (2023) tillagt i manuset. Källraden på bildytan ("inte en statistiskt prövad modell") är inte ändrad, förslag i `BACKLOG.md`.
+- Konfliktkunskapens ABC: 2006 bytt mot 2013 överallt (24 förekomster i bildspelet, år och APA-post i `sources.json`).
+- de Wit m.fl. (2012): abstractet kontrollerat, siffrorna i manuset inte. Öppen kopia finns i Leidens arkiv men gick inte att hämta från sessionen.
+
+Varje ändring i bildspelet är ett strängbyte i XML-delen med krav på exakt träffantal, övriga zip-delar byte för byte orörda. Inte renderat i PowerPoint. `build.py`, `tsc --strict` och `check_page.js` PASS. Inget deployat.
 
 ## Nattbatch 2026-10-06, grenen `batch/2026-10-06`
 
