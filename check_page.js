@@ -89,6 +89,18 @@ const FILES = {
   });
   if (kontrast < 4.5) errors.push(`kontrast .hamta .eyebrow ${kontrast.toFixed(2)}:1, kravet är 4,5:1`);
 
+  // Tryckytor minst 44 px: nedladdningslänken och kopieringsknappen (36 px synlig, 44 px via ::before).
+  const yta = await page.evaluate(() => {
+    const lank = document.querySelector('.hamta p a'), knapp = document.querySelector('button.kopiera');
+    if (!lank || !knapp) return 'saknas';
+    knapp.scrollIntoView({ block: 'center' });
+    const r = knapp.getBoundingClientRect();
+    const fore = getComputedStyle(knapp, '::before');
+    const traff = [[r.left - 3, r.top - 3], [r.left - 3, r.bottom + 3]].every(([x, y]) => document.elementFromPoint(x, y) === knapp);
+    return `${lank.getBoundingClientRect().height >= 44} ${traff && parseFloat(fore.width) >= 44 && parseFloat(fore.height) >= 44}`;
+  });
+  expect('tryckytor 44 px (länk, knapp)', yta, 'true true');
+
   await sortBy('#').click();
   await page.evaluate(() => { scrollTo(0, 0); document.querySelector('.tabellram')?.scrollTo(0, 0); });
   if (process.argv[2]) await page.screenshot({ path: process.argv[2] });
