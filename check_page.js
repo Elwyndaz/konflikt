@@ -116,6 +116,19 @@ const FILES = {
   if (overflow > 0) errors.push(`sidan är ${overflow}px bredare än skärmen i mobilvy`);
   if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', '-mobil.png') });
 
+  // Utan urklipp ska sidan säga att kopieringen misslyckades, inte kasta ett ohanterat fel.
+  const utan = await browser.newPage();
+  utan.on('pageerror', (e) => errors.push('js-fel utan urklipp: ' + e.message));
+  await utan.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { value: undefined }));
+  await utan.route('**/*', (route) => {
+    const hit = FILES[new URL(route.request().url()).pathname];
+    return hit ? route.fulfill({ body: fs.readFileSync(hit[0]), contentType: hit[1] }) : route.abort();
+  });
+  await utan.goto('http://localhost/konflikt/');
+  await utan.locator('button.kopiera').first().click();
+  await utan.waitForFunction(() => document.getElementById('status')?.textContent !== '', null, { timeout: 2000 }).catch(() => {});
+  expect('kvitto utan urklipp', await utan.locator('#status').textContent(), 'Kunde inte kopiera. Markera texten och kopiera för hand.');
+
   await browser.close();
   console.log(errors.length ? 'FAIL\n  ' + errors.join('\n  ') : 'PASS: sortering, kopiering och mobilbredd');
   process.exit(errors.length ? 1 : 0);

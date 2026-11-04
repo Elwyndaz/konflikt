@@ -33,6 +33,7 @@ body.addEventListener('click', async (e) => {
   const ref = btn?.closest('td')?.querySelector('.ref');
   if (!btn || !ref) return;
   const text = ref.textContent ?? '';
+  let ok = true;
   try {
     // text/html följer med så att kursiven överlever inklistring i Word.
     await navigator.clipboard.write([new ClipboardItem({
@@ -40,9 +41,13 @@ body.addEventListener('click', async (e) => {
       'text/html': new Blob([ref.innerHTML], { type: 'text/html' }),
     })]);
   } catch {
-    await navigator.clipboard.writeText(text);
+    // Urklipp kan saknas helt (osäker kontext) eller nekas av webbläsaren: säg det i stället för att tiga.
+    try { await navigator.clipboard.writeText(text); } catch { ok = false; }
   }
-  kvitto.textContent = 'Kopierat: ' + text;
+  // Töm först: samma text två gånger i rad läses annars inte upp igen.
+  kvitto.textContent = '';
+  setTimeout(() => { kvitto.textContent = ok ? 'Kopierat: ' + text : 'Kunde inte kopiera. Markera texten och kopiera för hand.'; }, 50);
+  if (!ok) return;
   btn.classList.add('klar');
   setTimeout(() => btn.classList.remove('klar'), 1500);
 });
