@@ -89,6 +89,18 @@ const FILES = {
   });
   if (kontrast < 4.5) errors.push(`kontrast .hamta .eyebrow ${kontrast.toFixed(2)}:1, kravet är 4,5:1`);
 
+  // Tryckytor minst 44 px: nedladdningslänken och kopieringsknappen (36 px synlig, 44 px via ::before).
+  const yta = await page.evaluate(() => {
+    const lank = document.querySelector('.hamta p a'), knapp = document.querySelector('button.kopiera');
+    if (!lank || !knapp) return 'saknas';
+    knapp.scrollIntoView({ block: 'center' });
+    const r = knapp.getBoundingClientRect();
+    const fore = getComputedStyle(knapp, '::before');
+    const traff = [[r.left - 3, r.top - 3], [r.left - 3, r.bottom + 3]].every(([x, y]) => document.elementFromPoint(x, y) === knapp);
+    return `${lank.getBoundingClientRect().height >= 44} ${traff && parseFloat(fore.width) >= 44 && parseFloat(fore.height) >= 44}`;
+  });
+  expect('tryckytor 44 px (länk, knapp)', yta, 'true true');
+
   await sortBy('#').click();
   await page.evaluate(() => { scrollTo(0, 0); document.querySelector('.tabellram')?.scrollTo(0, 0); });
   if (process.argv[2]) await page.screenshot({ path: process.argv[2] });
@@ -103,6 +115,19 @@ const FILES = {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (overflow > 0) errors.push(`sidan är ${overflow}px bredare än skärmen i mobilvy`);
   if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', '-mobil.png') });
+
+  // Utan urklipp ska sidan säga att kopieringen misslyckades, inte kasta ett ohanterat fel.
+  const utan = await browser.newPage();
+  utan.on('pageerror', (e) => errors.push('js-fel utan urklipp: ' + e.message));
+  await utan.addInitScript(() => Object.defineProperty(navigator, 'clipboard', { value: undefined }));
+  await utan.route('**/*', (route) => {
+    const hit = FILES[new URL(route.request().url()).pathname];
+    return hit ? route.fulfill({ body: fs.readFileSync(hit[0]), contentType: hit[1] }) : route.abort();
+  });
+  await utan.goto('http://localhost/konflikt/');
+  await utan.locator('button.kopiera').first().click();
+  await utan.waitForFunction(() => document.getElementById('status')?.textContent !== '', null, { timeout: 2000 }).catch(() => {});
+  expect('kvitto utan urklipp', await utan.locator('#status').textContent(), 'Kunde inte kopiera. Markera texten och kopiera för hand.');
 
   await browser.close();
   console.log(errors.length ? 'FAIL\n  ' + errors.join('\n  ') : 'PASS: sortering, kopiering och mobilbredd');

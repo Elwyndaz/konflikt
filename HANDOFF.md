@@ -31,3 +31,13 @@ Fyra commits, sammanfogade med `main` och live på Pages 2026-10-07 på Patriks 
 - Källkontroll av Jordan (pyramiden, A-hörnet) antecknad i `BACKLOG.md`, tillsammans med ett nytt fynd: Konfliktkunskapens ABC är daterad 2013 i PDF:en.
 
 Orörda eftersom de kräver Patrik eller arbetsmappen: de tre P1-punkterna om manuset, de Wit-PDF:en, punkterna under Presentationen och gruppfiltret (villkoret "används mer än som referens" är inte uppfyllt).
+
+## Förbättringsrunda 2026-11-04, grenen `claude/forbattringar-2026-11-04` (PR #1, inte mergad)
+
+Bara tillgänglighet och buggar. `sources.json` och bildspelet är orörda.
+
+- Tryckytor 44 px: kopieringsknapparna (36 px synligt, `::before` når ut till cellens hörn) och nedladdningslänken (utfyllnad med negativ marginal, rutan växer inte). Svarar på UX-raden 2026-10-30 (Fitts-mål).
+- `app.js`: när urklippet inte går att nå kastades ett ohanterat fel och inget hände. Nu säger statusraden "Kunde inte kopiera. Markera texten och kopiera för hand." Statusraden töms före varje ny text, så att två likadana kopieringar i rad läses upp båda gångerna.
+- `check_page.js` prövar båda: tryckytorna och sidan utan urklipp. Båda testerna fäller på den gamla koden.
+
+Verifierat: `build.py` PASS (41 rader), `tsc --strict` PASS, `check_page.js` PASS, axe-core 0 fel vid 390 och 1280 px. `check_page.js` kördes mot en kopia av live-sajtens `/style.css`, syskonrepot fanns inte i sessionen. Inget deployat. P1-punkterna i `BACKLOG.md` är orörda, de kräver Patrik.
