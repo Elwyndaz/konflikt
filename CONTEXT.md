@@ -41,6 +41,44 @@ Sidan länkar `/style.css` från orgutveckling.se (repot `elwyndaz.github.io`) o
 
 Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.github.io` har domänen orgutveckling.se hamnar repot på `/konflikt/` utan egen DNS. Sidan har `noindex, nofollow` och är inte länkad från sajten eller sitemap. Den får inte spärras i `robots.txt`: då läser Google aldrig `noindex`.
 
+## Architecture
+
+Byggs lokalt, den byggda `index.html` checkas in och Pages serverar repot rakt av.
+
+```mermaid
+graph LR
+  subgraph LOCAL["Lokalt"]
+    SRC[sources.json]
+    TPL[template.html]
+    BUILD[build.py]
+    CHECK[check_page.js i Chromium]
+  end
+
+  INDEX[index.html incheckad]
+  PAGES[GitHub Pages orgutveckling.se/konflikt]
+  USER[Webbläsare]
+  STYLE[orgutveckling.se /style.css]
+  PPTX[konfliktkompetens.pptx]
+
+  SRC --> BUILD
+  TPL --> BUILD
+  BUILD --> INDEX
+  INDEX --> CHECK
+  INDEX -->|git push till main| PAGES
+  USER --> PAGES
+  PAGES --> STYLE
+  PAGES --> PPTX
+```
+
+## Stack
+
+- Frontend: statisk HTML och `app.js` (vanilla JS med `// @ts-check`) för sortering och kopiering
+- Bygge: `build.py` (Python) gör `index.html` ur `sources.json` och `template.html`
+- Stil: lånar `/style.css` från orgutveckling.se, bara tabellen stilas lokalt
+- Data: `sources.json`, ingen backend
+- Tester: `assert` i `build.py` och `node check_page.js` med Playwright
+- Hosting: GitHub Pages, orgutveckling.se/konflikt, olistad med noindex
+
 ## Audits
 - Headers (automated): 2026-10-27, pass, 6 of 6 on orgutveckling.se/konflikt, Observatory B+ on orgutveckling.se
 - npm audit (automated): 2026-10-06, n/a, No package.json in repository; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
