@@ -17,6 +17,10 @@ En oberoende omkörning av hela uppdraget (analys, läslista med 38 källor, 28 
 
 Efter föredraget: sätt `status: done` när P1-punkterna är avgjorda. Repot stannar kvar som mall och minne: `AGENTS.md` är det som ska läsas först vid nästa liknande uppdrag.
 
+## Mutationstest 2026-11-04, grenen `claude/mutation-2026-11-04`
+
+Audit-kolumnen Mutation bedömd, inte körd: repot har ingen ren logik att mutera. `app.js` är 48 rader händelsehanterare mot DOM (sortering och kopiering) som `check_page.js` redan prövar i en riktig webbläsare, och `build.py` är en generator vars kontroller gäller datat i `sources.json`. Ett Stryker-varv mot UI-kod med `check_page.js` som enda test skulle ge en siffra utan värde. Raden under `## Audits` i `CONTEXT.md` säger `n/a` med motivering. Ingen kod ändrad.
+
 ## Automated audit batch, 2026-10-06
 
 Cross-project run from elwyn-dash with aifabriken `tools/audit-suite.ts` (headers, npm audit, secrets, Actions, markup, axe at one mobile viewport; TLS and Lighthouse not run). Results are the `(automated)` lines under `## Audits` in CONTEXT.md, findings under `## Granskning 2026-10-06` in BACKLOG.md. axe fail (one contrast violation); markup 0 findings, 41 external links outside the suite's scope; headers fail because the orgutveckling.se CSP allows `script-src 'unsafe-inline'` (item in elwyndaz.github.io). No application code or deployment changed. `reviewedAt` was left alone: the goal and next action above were not reviewed.

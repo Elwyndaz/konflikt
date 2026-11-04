@@ -54,3 +54,4 @@ Projektrepo under `Elwyndaz`, Pages från `main` och roten. Eftersom `elwyndaz.g
 - ZAP baseline: 2026-10-27, n/a, static site on GitHub Pages with no server, cookies or forms; headers, TLS and markup are covered by their own columns, so a passive ZAP scan would repeat them
 - Dependabot: 2026-10-29, pass, 0 open alerts
 - UX (automated): 2026-10-30, warn, 5 of 6 script checks pass on orgutveckling.se/konflikt (no --interact): warn Fitts targets; screenshot review not done
+- Mutation: 2026-11-04, n/a, no pure logic to mutate: app.js is 48 lines of DOM handlers (sort and copy, already driven by check_page.js in a browser), build.py is a one-shot generator whose asserts check the data, and its two helpers (italics, nbsp) are a few lines each; no unit tests exist, so a Stryker run would only measure check_page.js against UI code
