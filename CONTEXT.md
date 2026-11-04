@@ -2,7 +2,7 @@
 
 ## Vad det här är
 
-En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 41 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, kortnamn, klickbar titel (länkar till DOI eller webbadress), år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes. Någon egen länkkolumn finns inte: länken sitter i titeln och sist i APA-referensen. Referenserna har en kopieringsknapp som tar med kursiven.
+En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 42 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, kortnamn, klickbar titel (länkar till DOI eller webbadress), år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes. Någon egen länkkolumn finns inte: länken sitter i titeln och sist i APA-referensen. Referenserna har en kopieringsknapp som tar med kursiven.
 
 Sidan har också en nedladdningsruta överst: deltagarna hämtar bildspelet därifrån.
 
