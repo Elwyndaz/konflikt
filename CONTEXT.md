@@ -2,7 +2,7 @@
 
 ## Vad det här är
 
-En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 41 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, kortnamn, klickbar titel (länkar till DOI eller webbadress), år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes. Någon egen länkkolumn finns inte: länken sitter i titeln och sist i APA-referensen. Referenserna har en kopieringsknapp som tar med kursiven.
+En olänkad arbetssida på https://orgutveckling.se/konflikt/ : en sorterbar tabell över de 42 källorna bakom ett föredrag om konflikter på jobbet (2026-09-21). Per källa: läsnivå, kortnamn, klickbar titel (länkar till DOI eller webbadress), år, citeringar, undersökt population, antal studier (för översikter och metaanalyser), APA 7-referens, hänvisning i löptext och inom parentes. Någon egen länkkolumn finns inte: länken sitter i titeln och sist i APA-referensen. Referenserna har en kopieringsknapp som tar med kursiven.
 
 Sidan har också en nedladdningsruta överst: deltagarna hämtar bildspelet därifrån.
 
@@ -24,7 +24,7 @@ Bildspelet låg tidigare bara i arbetsmappen. Patrik beslöt 2026-09-21 att publ
 | `index.html` | Byggd fil, incheckad eftersom Pages serverar repot rakt av. Redigera aldrig för hand. |
 | `app.js` | Sortering och kopiering, ren JS med `// @ts-check`. |
 | `check_page.js` | Prövar den byggda sidan i Chromium: sortering, kopiering, mobilbredd. |
-| `konfliktkompetens.pptx` | Bildspelet som deltagarna laddar ner. Kopia av arbetsmappens `Konfliktkompetens_f_r_ABF_Sverige_v3.pptx`, byt ut den filen här när den ändras. Sedan 2026-10-06 skiljer den sig från v3 på ett ställe: årtalet i källraden på bild 24 (2014, v3 har 2006). |
+| `konfliktkompetens.pptx` | Bildspelet som deltagarna laddar ner. Kopia av arbetsmappens `Konfliktkompetens_f_r_ABF_Sverige_v3.pptx`, byt ut den filen här när den ändras. Sedan 2026-10-06 skiljer den sig från v3: årtalet i källraden på bild 24 (2014, v3 har 2006), och sedan källkontrollen 2026-11-04 bild 4 till 10, 13, 15, 22, 26, 28, 31 och 35 (se `BACKLOG.md`). |
 | `.nojekyll` | Stänger av Jekyll på Pages, så filerna serveras som de är. |
 
 ## Datamodell (`sources.json`)
