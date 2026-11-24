@@ -74,4 +74,4 @@ Sidan genomgången som deltagare vid 390 och 1440 px: första besök, sortering 
 - Tabbat fokus doldes bakom den klistrade textkolumnen (1440 px) och utanför ramen (390 px). `app.js` rullar fram fokus vid `:focus-visible`.
 - Datumet i överraden bröts vid bindestrecket i mobil.
 
-Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS.
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS. Pushat till `main` (a090175), Pages-bygget gröna, live på https://orgutveckling.se/konflikt/: tabbning framåt och bakåt 0 dolda stopp vid 390 och 1440 px, datumet på en rad vid 390 px.
