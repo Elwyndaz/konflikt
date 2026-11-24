@@ -112,6 +112,9 @@ const FILES = {
     if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', `-${width}.png`) });
   }
   await page.setViewportSize({ width: 375, height: 800 });
+  // Datumet i överraden bröts vid bindestrecket i mobil ("2026-" / "09-18").
+  const datum = await page.evaluate(() => [...document.querySelectorAll('.datum')].filter((d) => d.getClientRects().length > 1).length);
+  if (datum || !(await page.locator('.page-head .datum').count())) errors.push(`datum brutet över rader i mobilvy (${datum})`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   if (overflow > 0) errors.push(`sidan är ${overflow}px bredare än skärmen i mobilvy`);
   if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', '-mobil.png') });

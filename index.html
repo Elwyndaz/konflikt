@@ -84,6 +84,8 @@
 .grupp-a{background:var(--accent)}.grupp-b{background:var(--black)}.grupp-c{background:var(--dampad)}.grupp-d{background:var(--papper-mork);color:var(--brod)}
 .fot{margin:22px 0 clamp(60px,8vw,110px);font-size:13.5px;color:var(--brod-ljus)}
 .fot p{max-width:90ch;margin-top:8px}
+/* Datumet bryts annars vid bindestrecket i mobil. */
+.datum{white-space:nowrap}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 </style>
 </head>
@@ -98,7 +100,7 @@
 <main id="innehall">
 <div class="wrap">
   <div class="page-head">
-    <p class="eyebrow">Arbetsmaterial &middot; Konflikthantering &middot; 2026-09-18</p>
+    <p class="eyebrow">Arbetsmaterial &middot; Konflikthantering &middot; <span class="datum">2026-09-18</span></p>
     <h1>Källor och läsordning</h1>
     <p class="ingress">42 texter bakom ett föredrag om konflikter på jobbet. Ursprungsordningen är läsordningen. Klicka på en kolumnrubrik för att sortera, en gång till för att vända. Kopieringsknappen tar med kursiven till Word.</p>
     <ul class="forklaring"><li><span class="grupp grupp-a">A</span> Läs hela</li><li><span class="grupp grupp-b">B</span> Abstract plus ett ställe</li><li><span class="grupp grupp-c">C</span> Bara abstract</li><li><span class="grupp grupp-d">D</span> Hoppa över</li></ul>
@@ -163,8 +165,8 @@
   <p id="status" class="sr-only" role="status" aria-live="polite"></p>
 
   <div class="fot">
-    <p>Citeringar enligt Crossref 2026-09-18. Crossref räknar bara citeringar från verk med DOI, så Google Scholar visar ofta två till tre gånger högre tal. Låga tal betyder ofta ny artikel, inte svag artikel.</p>
-    <p>Population och antal studier kommer ur artiklarnas abstract, hämtade 2026-09-18. En asterisk (*) betyder att uppgiften kommer från läsning av fulltexten. Tom ruta under Antal studier betyder primärstudie eller teoritext.</p>
+    <p>Citeringar enligt Crossref <span class="datum">2026-09-18</span>. Crossref räknar bara citeringar från verk med DOI, så Google Scholar visar ofta två till tre gånger högre tal. Låga tal betyder ofta ny artikel, inte svag artikel.</p>
+    <p>Population och antal studier kommer ur artiklarnas abstract, hämtade <span class="datum">2026-09-18</span>. En asterisk (*) betyder att uppgiften kommer från läsning av fulltexten. Tom ruta under Antal studier betyder primärstudie eller teoritext.</p>
     <p>Hänvisningarna följer APA 7 på svenska: m.fl. från första hänvisningen vid tre eller fler författare, och i löptext, &amp; inom parentes.</p>
   </div>
 </div>

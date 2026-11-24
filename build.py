@@ -72,7 +72,7 @@ ths = "".join(
 legend = "".join(f'<li><span class="grupp grupp-{k.lower()}">{k}</span> {v}</li>' for k, v in GROUPS.items())
 
 page = (ROOT / "template.html").read_text(encoding="utf-8")
-for key, val in {"{{ths}}": ths, "{{rows}}": "\n".join(out), "{{legend}}": legend, "{{n}}": str(len(rows)), "{{checked}}": CHECKED}.items():
+for key, val in {"{{ths}}": ths, "{{rows}}": "\n".join(out), "{{legend}}": legend, "{{n}}": str(len(rows)), "{{checked}}": f'<span class="datum">{CHECKED}</span>'}.items():
     assert key in page, f"mallen saknar {key}"
     page = page.replace(key, val)
 assert "{{" not in page, "oersatt platshållare i mallen"
