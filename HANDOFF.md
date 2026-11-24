@@ -2,9 +2,9 @@
 schemaVersion: 1
 status: active
 currentGoal: Källtabellen ska stämma och vara användbar inför föredraget 2026-09-21.
-nextAction: Patrik granskar källkontrollen 2026-11-04 (PR #3) och för över ändringarna i bildspelet till arbetsmappens v3.
+nextAction: Patrik för över ändringarna i bildspelet till arbetsmappens v3 (P1 under Presentationen i BACKLOG.md).
 blockers: []
-reviewedAt: 2026-10-07
+reviewedAt: 2026-11-24
 ---
 
 # HANDOFF
@@ -25,7 +25,7 @@ Audit-kolumnen Mutation bedömd, inte körd: repot har ingen ren logik att muter
 
 Cross-project run from elwyn-dash with aifabriken `tools/audit-suite.ts` (headers, npm audit, secrets, Actions, markup, axe at one mobile viewport; TLS and Lighthouse not run). Results are the `(automated)` lines under `## Audits` in CONTEXT.md, findings under `## Granskning 2026-10-06` in BACKLOG.md. axe fail (one contrast violation); markup 0 findings, 41 external links outside the suite's scope; headers fail because the orgutveckling.se CSP allows `script-src 'unsafe-inline'` (item in elwyndaz.github.io). No application code or deployment changed. `reviewedAt` was left alone: the goal and next action above were not reviewed.
 
-## Källkontroll 2026-11-04, grenen `claude/kallor-2026-11-04` (PR #3, inte mergad)
+## Källkontroll 2026-11-04, grenen `claude/kallor-2026-11-04` (PR #3, mergad i `main` 2026-11-05)
 
 De fyra P1-punkterna om källor är avgjorda, med citat och sidor i `BACKLOG.md`. Ändringarna ligger i repots `konfliktkompetens.pptx`, `sources.json`, `og.png` och den byggda sidan. Arbetsmappens v3 är inte rörd, så den skiljer sig nu på fler ställen (ny P1-punkt under Presentationen).
 
@@ -48,7 +48,7 @@ Fyra commits, sammanfogade med `main` och live på Pages 2026-10-07 på Patriks 
 
 Orörda eftersom de kräver Patrik eller arbetsmappen: de tre P1-punkterna om manuset, de Wit-PDF:en, punkterna under Presentationen och gruppfiltret (villkoret "används mer än som referens" är inte uppfyllt).
 
-## Förbättringsrunda 2026-11-04, grenen `claude/forbattringar-2026-11-04` (PR #1, inte mergad)
+## Förbättringsrunda 2026-11-04, grenen `claude/forbattringar-2026-11-04` (PR #1, mergad i `main` 2026-11-04)
 
 Bara tillgänglighet och buggar. `sources.json` och bildspelet är orörda.
 
@@ -57,3 +57,12 @@ Bara tillgänglighet och buggar. `sources.json` och bildspelet är orörda.
 - `check_page.js` prövar båda: tryckytorna och sidan utan urklipp. Båda testerna fäller på den gamla koden.
 
 Verifierat: `build.py` PASS (41 rader), `tsc --strict` PASS, `check_page.js` PASS, axe-core 0 fel vid 390 och 1280 px. `check_page.js` kördes mot en kopia av live-sajtens `/style.css`, syskonrepot fanns inte i sessionen. Inget deployat. P1-punkterna i `BACKLOG.md` är orörda, de kräver Patrik.
+
+## Funktionsrunda 2026-11-24, grenen `feat/2026-11-24`
+
+Ingen öppen punkt i `BACKLOG.md` var en funktion eller användarbugg som går att bygga utan Patrik: P1- och P2-punkterna under Presentationen gäller arbetsmappens v3 och PowerPoint, de Wit-kapitlet kräver en manuell nedladdning, och gruppfiltret (P3) har villkoret "används mer än som referens". Sidan prövad live vid 390 och 1440 px: inga JS-fel, inga misslyckade anrop, ingen sidrullning.
+
+- PR #1 till #4 är mergade i `main` (2026-11-04 och 2026-11-05) och live: `index.html` på orgutveckling.se/konflikt/ är byte för byte lika med `main`, och bildspelet har samma storlek (283 694 byte) live som i repot. Raderna ovan som sa "inte mergad" är rättade.
+- `check_page.js` läste `/style.css` från `../elwyndaz.github.io`, som inte finns bredvid en worktree under `C:\dev\_wt`. Miljövariabeln `STYLE_CSS` pekar nu ut filen, se `AGENTS.md`.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS.

@@ -2,7 +2,7 @@
 
 ## Byggt
 
-- Sorterbar källtabell med 41 texter, APA 7-referenser och kopieringsknappar, live på orgutveckling.se/konflikt/ (2026-09-18).
+- Sorterbar källtabell med 42 texter (41 till 2026-11-04), APA 7-referenser och kopieringsknappar, live på orgutveckling.se/konflikt/ (2026-09-18).
 - `build.py` med datavalidering, strikt typkontroll av `app.js`, webbläsarkontroll i `check_page.js`.
 
 ## Källkontroll före 2026-09-21
