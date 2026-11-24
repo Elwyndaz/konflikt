@@ -28,6 +28,8 @@
 
 ## Sidan
 
+- [x] `[P2]` **Buggjakt 2026-11-24:** tabbat fokus i tabellen doldes. Vid 1440 px hamnade titellänken bakom den klistrade textkolumnen, vid 390 px den sista kopieringsknappen i varje rad utanför ramens högerkant: 6 av 30 tabbstopp dolda per bredd (Chrome rullar inte fram ett halvt synligt fokus). **Rättat:** `app.js` rullar fram fokus vid `:focus-visible` med `scroll-padding` lika med textkolumnens bredd. `check_page.js` tabbar 30 stopp per bredd och fäller vid dolda; framåt och bakåt 0 dolda efter rättningen.
+- [x] `[P3]` **Buggjakt 2026-11-24:** datumet i överraden bröts vid bindestrecket i mobil ("2026-" / "09-18" vid 390 px). **Rättat:** `span.datum` med `nowrap` från `build.py`, `check_page.js` fäller om det bryts.
 - [ ] `[P3]` Filter per grupp (A till D) om tabellen börjar användas mer än som referens. Sortering på gruppkolumnen räcker i dag.
 
 ## Granskning 2026-10-06

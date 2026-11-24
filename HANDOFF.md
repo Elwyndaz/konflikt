@@ -66,3 +66,12 @@ Ingen öppen punkt i `BACKLOG.md` var en funktion eller användarbugg som går a
 - `check_page.js` läste `/style.css` från `../elwyndaz.github.io`, som inte finns bredvid en worktree under `C:\dev\_wt`. Miljövariabeln `STYLE_CSS` pekar nu ut filen, se `AGENTS.md`.
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS.
+
+## Buggjakt 2026-11-24, grenen `hunt/2026-11-24`
+
+Sidan genomgången som deltagare vid 390 och 1440 px: första besök, sortering med mus och tangentbord, omladdning, tabbning framåt och bakåt genom tabellen, nedladdningen (283 694 byte live, samma som repot). Inga JS-fel eller misslyckade anrop live. Två buggar rättade, båda med test i `check_page.js` som fäller på den gamla koden, se `BACKLOG.md`:
+
+- Tabbat fokus doldes bakom den klistrade textkolumnen (1440 px) och utanför ramen (390 px). `app.js` rullar fram fokus vid `:focus-visible`.
+- Datumet i överraden bröts vid bindestrecket i mobil.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS.
