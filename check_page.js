@@ -116,6 +116,25 @@ const FILES = {
   if (overflow > 0) errors.push(`sidan är ${overflow}px bredare än skärmen i mobilvy`);
   if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', '-mobil.png') });
 
+  // Tangentbord: varje fokusstopp i tabellen ska synas, inte ligga bakom den klistrade textkolumnen eller utanför ramen.
+  await page.emulateMedia({ reducedMotion: 'reduce' }); // sajtens mjuka rullning av, annars mäts mitt i rörelsen
+  for (const width of [390, 1440]) {
+    await page.setViewportSize({ width, height: 844 });
+    await page.reload();
+    await page.locator('thead button').last().focus();
+    let dolda = 0;
+    for (let i = 0; i < 30; i++) {
+      await page.keyboard.press('Tab');
+      dolda += await page.evaluate(() => {
+        const a = document.activeElement, q = a?.getClientRects()[0];
+        if (!a || !q || !a.closest('tbody')) return 0;
+        const hit = document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2);
+        return hit && a.contains(hit) ? 0 : 1;
+      });
+    }
+    if (dolda) errors.push(`${dolda} av 30 fokusstopp dolda vid ${width}px`);
+  }
+
   // Utan urklipp ska sidan säga att kopieringen misslyckades, inte kasta ett ohanterat fel.
   const utan = await browser.newPage();
   utan.on('pageerror', (e) => errors.push('js-fel utan urklipp: ' + e.message));

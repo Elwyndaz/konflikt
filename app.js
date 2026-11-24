@@ -28,6 +28,19 @@ head.addEventListener('click', (e) => {
   body.append(...rows);
 });
 
+// Chrome rullar bara fram ett fokuserat element som inte syns alls. Ett halvt synligt blev kvar bakom den
+// klistrade textkolumnen (Titel, från 760 px) eller utanför ramens högerkant (sista kopieringsknappen i mobil).
+// Bara :focus-visible: ett musklick som rullar under pekaren kan annars tappa klicket.
+const ram = /** @type {HTMLElement} */ (table.parentElement);
+body.addEventListener('focusin', (e) => {
+  const el = /** @type {Element} */ (e.target);
+  if (!el.matches(':focus-visible')) return;
+  const text = /** @type {HTMLElement | null} */ (el.closest('tr')?.querySelector('td.text') ?? null);
+  ram.style.scrollPaddingLeft = text && getComputedStyle(text).position === 'sticky' ? text.offsetWidth + 'px' : '';
+  ram.style.scrollPaddingTop = head.offsetHeight + 'px';
+  el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+});
+
 body.addEventListener('click', async (e) => {
   const btn = /** @type {Element} */ (e.target).closest('button.kopiera');
   const ref = btn?.closest('td')?.querySelector('.ref');
