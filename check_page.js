@@ -16,7 +16,7 @@ function loadPlaywright() {
 const FILES = {
   '/konflikt/': [path.join(__dirname, 'index.html'), 'text/html'],
   '/konflikt/app.js': [path.join(__dirname, 'app.js'), 'text/javascript'],
-  '/style.css': [path.join(__dirname, '..', 'elwyndaz.github.io', 'style.css'), 'text/css'],
+  '/style.css': [process.env.STYLE_CSS || path.join(__dirname, '..', 'elwyndaz.github.io', 'style.css'), 'text/css'], // STYLE_CSS: i en worktree ligger syskonrepot inte bredvid
 };
 
 (async () => {

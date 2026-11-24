@@ -8,6 +8,7 @@ Det som kostade tid 2026-09-18, skrivet så att nästa föredrag eller litteratu
 uv run python build.py        # PASS eller AssertionError som säger vilken rad
 npx -y -p typescript tsc --allowJs --checkJs --strict --noEmit --target es2022 --lib es2022,dom,dom.iterable app.js
 node check_page.js            # PASS eller FAIL med det som skilde
+STYLE_CSS=C:/dev/elwyndaz.github.io/style.css node check_page.js   # i en worktree under C:\dev\_wt
 ```
 
 Ändra data i `sources.json`, aldrig i `index.html`. Bygg, kör alla tre, committa båda filerna.
