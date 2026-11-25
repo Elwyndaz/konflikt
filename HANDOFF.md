@@ -94,3 +94,9 @@ Pushat till `main` (e905e3c), Pages-bygget klart 02:16. Live på https://orgutve
 Scenarier som headless Playwright-skript (upprepad användning, två flikar, flik öppen över en deploy, bredd ändrad mitt i tabbning, 420 rader, nätfel för `app.js`, utskrift). Ett fynd: utskriften klippte tabellen till 7 av 42 rader. Rättat med `@media print` i `template.html`, `check_page.js` fäller på den gamla koden. Övriga scenarier utan fynd, se `BACKLOG.md`. Inga öppna P3-funktioner att bygga: de Wit kräver en manuell nedladdning, presentationspunkterna gäller PowerPoint, CLS-punkten hör till sajtens `style.css` och gruppfiltret har ett villkor som inte är uppfyllt.
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS. Pushat till `main` (f3d2f7a), Pages-bygget klart. Live på https://orgutveckling.se/konflikt/: utskriftsläget klipper 0 px, PDF:en har alla 42 texter på 5 A4-sidor, sorteringen fungerar, ingen sidrullning vid 390 px, inga JS-fel.
+
+## Webbläsarrunda 2026-11-25, grenen `xb/2026-11-25`
+
+Sidan prövad i WebKit (Playwright, playwright-core 1.64.1, webkit-2370, iPhone 13-profil) och Firefox (firefox-1555, 1440 px) mot Chromium: live för läsning, lokalt med `check_page.js` omkörd i varje motor. Ett fynd rättat: tabbat fokus i översta raden doldes under sidhuvudet i WebKit och Firefox, se `BACKLOG.md`. Utskriftsbredden i WebKit och Firefox lämnad som P3. Ingen riktig iPhone prövad.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `app.js`, fokuskontrollen 0 dolda i WebKit, Firefox och Chromium.
