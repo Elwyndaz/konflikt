@@ -38,6 +38,8 @@ body.addEventListener('focusin', (e) => {
   const text = /** @type {HTMLElement | null} */ (el.closest('tr')?.querySelector('td.text') ?? null);
   ram.style.scrollPaddingLeft = text && getComputedStyle(text).position === 'sticky' ? text.offsetWidth + 'px' : '';
   ram.style.scrollPaddingTop = head.offsetHeight + 'px';
+  // WebKit och Firefox rullar fönstret så att ramen hamnar överst, under sajtens klistrade sidhuvud: knappar i översta raden doldes.
+  document.documentElement.style.scrollPaddingTop = (/** @type {HTMLElement | null} */ (document.querySelector('.site-header'))?.offsetHeight ?? 0) + 'px';
   el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
 });
 

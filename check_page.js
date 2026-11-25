@@ -145,6 +145,18 @@ const FILES = {
       });
     }
     if (dolda) errors.push(`${dolda} av 30 fokusstopp dolda vid ${width}px`);
+    // WebKit och Firefox rullar fönstret så att ramen hamnar överst, under sajtens klistrade sidhuvud. Samma läge här:
+    // översta radens första tabbstopp får inte ligga bakom sidhuvudet.
+    await page.reload();
+    await page.locator('thead button').last().focus();
+    await page.evaluate(() => scrollTo(0, scrollY + (document.querySelector('.tabellram')?.getBoundingClientRect().top ?? 0)));
+    await page.keyboard.press('Tab');
+    const underHuvud = await page.evaluate(() => {
+      const a = document.activeElement, q = a?.getClientRects()[0];
+      const hit = q && document.elementFromPoint(q.left + q.width / 2, q.top + q.height / 2);
+      return hit && a?.contains(hit) ? '' : `${a?.tagName} döljs av ${hit?.className}`;
+    });
+    if (underHuvud) errors.push(`översta raden vid ${width}px: ${underHuvud}`);
   }
 
   // Utan urklipp ska sidan säga att kopieringen misslyckades, inte kasta ett ohanterat fel.
