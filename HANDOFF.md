@@ -75,3 +75,9 @@ Sidan genomgången som deltagare vid 390 och 1440 px: första besök, sortering 
 - Datumet i överraden bröts vid bindestrecket i mobil.
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS. Pushat till `main` (a090175), Pages-bygget gröna, live på https://orgutveckling.se/konflikt/: tabbning framåt och bakåt 0 dolda stopp vid 390 och 1440 px, datumet på en rad vid 390 px.
+
+## Buggjakt 2 2026-11-24, grenen `hunt2/2026-11-24`
+
+Det batch 6 inte gick: 404 under /konflikt/, alla länkar, Crossref-metadata mot tabellen, bildspelets siffror, sidan utan stilmall, skript eller typsnitt, andra besöket. Två fynd rättade, se `BACKLOG.md`: egen `404.html` (GitHubs engelska sida kom förut) och `og:description` plus sidfotens datum. Inga parkerade småbuggar från batch 5 eller 6 fanns kvar: öppna punkter kräver Patrik eller PowerPoint.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS. Pushat till `main` (e0861b7), Pages-bygget klart, live: https://orgutveckling.se/konflikt/bildspel svarar 404 med den svenska sidan, `og:description` och sidfoten nya, 390 och 1440 px utan fel.
