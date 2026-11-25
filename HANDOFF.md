@@ -88,3 +88,9 @@ Mätt live med headless Playwright vid 390 px (4x CPU, Slow 4G) och 1440 px, sid
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `index.html`.
 Pushat till `main` (e905e3c), Pages-bygget klart 02:16. Live på https://orgutveckling.se/konflikt/: description och canonical på plats, efter: LCP 1 864 ms och CLS 0,001 vid 390 px, LCP 228 ms och CLS 0,034 vid 1440 px, 265 kB, axe 0 fel. LCP-skillnaden mot före är brus, ändringen rör bara metadata.
+
+## Scenariojakt 2026-11-25, grenen `p3/2026-11-25`
+
+Scenarier som headless Playwright-skript (upprepad användning, två flikar, flik öppen över en deploy, bredd ändrad mitt i tabbning, 420 rader, nätfel för `app.js`, utskrift). Ett fynd: utskriften klippte tabellen till 7 av 42 rader. Rättat med `@media print` i `template.html`, `check_page.js` fäller på den gamla koden. Övriga scenarier utan fynd, se `BACKLOG.md`. Inga öppna P3-funktioner att bygga: de Wit kräver en manuell nedladdning, presentationspunkterna gäller PowerPoint, CLS-punkten hör till sajtens `style.css` och gruppfiltret har ett villkor som inte är uppfyllt.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS. Pushat till `main` (f3d2f7a), Pages-bygget klart. Live på https://orgutveckling.se/konflikt/: utskriftsläget klipper 0 px, PDF:en har alla 42 texter på 5 A4-sidor, sorteringen fungerar, ingen sidrullning vid 390 px, inga JS-fel.
