@@ -82,6 +82,8 @@
 .kopiera:hover{color:var(--accent);border-color:var(--accent)}
 .kopiera:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .kopiera.klar{color:var(--papper);background:var(--accent)}
+/* Tvingade färger (Windows kontrastteman) tar bort bakgrunden: kvittot syntes inte alls. */
+@media(forced-colors:active){.kopiera.klar{forced-color-adjust:none;color:HighlightText;background:Highlight}}
 .grupp{display:inline-grid;place-items:center;width:24px;height:24px;font:500 12px/1 var(--mono);color:var(--papper);background:var(--dampad)}
 .grupp-a{background:var(--accent)}.grupp-b{background:var(--black)}.grupp-c{background:var(--dampad)}.grupp-d{background:var(--papper-mork);color:var(--brod)}
 .fot{margin:22px 0 clamp(60px,8vw,110px);font-size:13.5px;color:var(--brod-ljus)}
@@ -183,7 +185,7 @@
   <div class="fot">
     <p>Citeringar enligt Crossref <span class="datum">2026-09-18</span>, för Lacerenza m.fl. <span class="datum">2026-11-04</span>. Crossref räknar bara citeringar från verk med DOI, så Google Scholar visar ofta två till tre gånger högre tal. Låga tal betyder ofta ny artikel, inte svag artikel.</p>
     <p>Population och antal studier kommer ur artiklarnas abstract, hämtade <span class="datum">2026-09-18</span> till <span class="datum">2026-11-04</span>. En asterisk (*) betyder att uppgiften kommer från läsning av fulltexten. Tom ruta under Antal studier betyder primärstudie eller teoritext.</p>
-    <p>Hänvisningarna följer APA 7 på svenska: m.fl. från första hänvisningen vid tre eller fler författare, och i löptext, &amp; inom parentes.</p>
+    <p>Hänvisningarna följer APA 7 på svenska: m.fl. från första hänvisningen vid tre eller fler författare, <i>och</i> i löptext, <i>&amp;</i> inom parentes.</p>
   </div>
 </div>
 </main>

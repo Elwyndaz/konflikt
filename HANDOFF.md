@@ -101,3 +101,9 @@ Sidan prövad i WebKit (Playwright, playwright-core 1.64.1, webkit-2370, iPhone 
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `app.js`, fokuskontrollen 0 dolda i WebKit, Firefox och Chromium.
 Pushat till `main` (3d1a11d, 0934522), Pages-bygget klart. Live på https://orgutveckling.se/konflikt/ med `app.js?v=0e6246c1`: översta raden plus 30 tabbstopp 0 dolda vid 390 och 1440 px i WebKit (Playwright), Firefox och Chromium; i WebKit med iPhone 13-profil ger tryck på Citeringar sortering och tryck på kopieringsknappen kvittot, ingen sidrullning.
+
+## Preferensrunda 2026-11-25, grenen `prefs/2026-11-25`
+
+Svensk text genomläst och sidan prövad i headless Chromium med mörkt läge, reducerad rörelse, 200 % zoom vid 1280 och 390 px och tvingade färger, se `BACKLOG.md`. Tre fynd rättade: kopieringskvittot syntes inte i tvingade färger (test i `check_page.js`), `404.html` rullade i sidled vid 200 % zoom i mobil, och sidfotens "och" och "&" är kursiverade så att de läses som exempel. Mörkt läge finns inte på sajten och lades inte till.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `index.html`.

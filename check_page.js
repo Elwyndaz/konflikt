@@ -81,6 +81,20 @@ const FILES = {
   });
   if (!html.includes('<i>Journal of Applied Psychology, 111</i>')) errors.push('kursiven följde inte med i kopian: ' + html.slice(0, 120));
 
+  // Tvingade färger (Windows kontrastteman) tog bort kvittots bakgrund: kopierad och okopierad knapp såg likadana ut.
+  await page.emulateMedia({ forcedColors: 'active' });
+  const kvittoSyns = await page.evaluate(() => {
+    const k = document.querySelector('button.kopiera');
+    if (!k) return false;
+    const fore = getComputedStyle(k).backgroundColor;
+    k.classList.add('klar');
+    const efter = getComputedStyle(k).backgroundColor;
+    k.classList.remove('klar');
+    return fore !== efter && !/rgba\(\d+, \d+, \d+, 0\)/.test(efter) && efter !== getComputedStyle(document.body).backgroundColor;
+  });
+  if (!kvittoSyns) errors.push('kopieringskvittot syns inte i tvingade färger');
+  await page.emulateMedia({ forcedColors: 'none' });
+
   // WCAG 1.4.3: liten text i nedladdningsrutan ska ha minst 4,5:1 mot rutans bakgrund.
   const kontrast = await page.evaluate(() => {
     const lum = (/** @type {string} */ c) => {
