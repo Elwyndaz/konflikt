@@ -85,11 +85,13 @@ graph LR
 - Secrets (automated): 2026-10-06, pass, 2 targets; 0 failed, 0 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
 - Actions (automated): 2026-10-06, n/a, no GitHub Actions workflows; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a/konflikt.json
 - Markup (automated): 2026-10-06, blocked, 1 targets; 0 failed, 1 blocked; evidence C:/dev/aifabriken/.runs/audits/2026-10-06-batch-a2/konflikt.json
-- WCAG 2.2 AA (automated): 2026-10-27, needs-review, axe 4.14.0 0 violations on orgutveckling.se/konflikt (mobile, one page); manual keyboard pass not done
+- WCAG 2.2 AA (automated): 2026-11-25, needs-review, axe-core 0 violations on orgutveckling.se/konflikt/ and its 404 at 390 and 1440 px; keyboard tab order checked by check_page.js (2026-11-24), no screen-reader pass
 - OG image: 2026-10-27, pass, 1200x630 PNG, https://orgutveckling.se/konflikt/og.png, screenshot of the top of the page, checked live and by eye
 - Database: 2026-10-25, none, static site
 - OWASP Top 10: 2026-10-30, pass, code review (Mistral Large; Claude read only the verdict line, lows unread), no live probe; 0 high, 0 medium reported
 - ZAP baseline: 2026-10-27, n/a, static site on GitHub Pages with no server, cookies or forms; headers, TLS and markup are covered by their own columns, so a passive ZAP scan would repeat them
 - Dependabot: 2026-10-29, pass, 0 open alerts
 - UX (automated): 2026-10-30, warn, 5 of 6 script checks pass on orgutveckling.se/konflikt (no --interact): warn Fitts targets; screenshot review not done
+- Performance: 2026-11-25, pass, live at 390 px (4x CPU, Slow 4G) LCP 2068 ms, CLS 0.001, 265 kB; 1440 px LCP 388 ms, CLS 0.034; no images, fonts cached one year
+- Metadata: 2026-11-25, pass, title, description, canonical, lang sv, og:image 1200x630, favicon; no manifest (not a PWA)
 - Mutation: 2026-11-04, n/a, no pure logic to mutate: app.js is 48 lines of DOM handlers (sort and copy, already driven by check_page.js in a browser), build.py is a one-shot generator whose asserts check the data, and its two helpers (italics, nbsp) are a few lines each; no unit tests exist, so a Stryker run would only measure check_page.js against UI code

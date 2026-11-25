@@ -4,7 +4,7 @@ status: active
 currentGoal: Källtabellen ska stämma och vara användbar inför föredraget 2026-09-21.
 nextAction: Patrik för över ändringarna i bildspelet till arbetsmappens v3 (P1 under Presentationen i BACKLOG.md).
 blockers: []
-reviewedAt: 2026-11-24
+reviewedAt: 2026-11-25
 ---
 
 # HANDOFF
@@ -81,3 +81,10 @@ Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PAS
 Det batch 6 inte gick: 404 under /konflikt/, alla länkar, Crossref-metadata mot tabellen, bildspelets siffror, sidan utan stilmall, skript eller typsnitt, andra besöket. Två fynd rättade, se `BACKLOG.md`: egen `404.html` (GitHubs engelska sida kom förut) och `og:description` plus sidfotens datum. Inga parkerade småbuggar från batch 5 eller 6 fanns kvar: öppna punkter kräver Patrik eller PowerPoint.
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS. Pushat till `main` (e0861b7), Pages-bygget klart, live: https://orgutveckling.se/konflikt/bildspel svarar 404 med den svenska sidan, `og:description` och sidfoten nya, 390 och 1440 px utan fel.
+
+## Fartrunda 2026-11-25, grenen `speed/2026-11-25`
+
+Mätt live med headless Playwright vid 390 px (4x CPU, Slow 4G) och 1440 px, sidan och `404.html`. Siffrorna står i `BACKLOG.md` under Sidan och som Performance- och Metadata-rader i `CONTEXT.md`. Inget att vinna på bilder (sidan har inga) eller skript (`app.js` laddas sist i body). Typsnittsraden är samma som på resten av sajten och lämnad orörd. Rättat: `meta description` och canonical saknades. axe-core 0 fel vid båda bredderna.
+
+Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `index.html`.
+Pushat till `main` (e905e3c), Pages-bygget klart 02:16. Live på https://orgutveckling.se/konflikt/: description och canonical på plats, efter: LCP 1 864 ms och CLS 0,001 vid 390 px, LCP 228 ms och CLS 0,034 vid 1440 px, 265 kB, axe 0 fel. LCP-skillnaden mot före är brus, ändringen rör bara metadata.
