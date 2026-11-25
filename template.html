@@ -88,6 +88,20 @@
 .fot p{max-width:90ch;margin-top:8px}
 /* Datumet bryts annars vid bindestrecket i mobil. */
 .datum{white-space:nowrap}
+/* Utskrift: ramen rullar inte på papper, så max-height och overflow klippte till 7 rader och halva APA-kolumnen.
+   Hela tabellen, smalare, utan kopieringsknappar och sorteringspilar. */
+@media print{
+  .tabellram{max-height:none;overflow:visible;border:0}
+  .kallor{font-size:8.5px}
+  .kallor th,.kallor td{position:static;padding:3px 4px;hyphens:auto}
+  .kallor td.text,.kallor .titel,.kallor .bred,.kallor .halvbred,.kallor .apa,.kallor .kort{min-width:0}
+  .kallor td.text{font-size:9px}
+  .kallor th{font-size:7px;letter-spacing:0;white-space:normal}
+  .kallor th button{min-height:0;padding:0}
+  .kallor th[data-type] button::after{content:none}
+  .kallor td:has(.kopiera){padding-right:4px}
+  .kopiera{display:none}
+}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 </style>
 </head>

@@ -114,6 +114,12 @@ const FILES = {
     if (extra !== 0) errors.push(`tabellen rullar i sidled vid ${width}px (${extra}px för bred)`);
     if (process.argv[2]) await page.screenshot({ path: process.argv[2].replace('.png', `-${width}.png`) });
   }
+  // Utskrift (Ctrl+P, A4 stående, ca 718 px): ramens max-height och overflow klippte till 7 av 42 rader och halva APA-kolumnen.
+  await page.emulateMedia({ media: 'print' });
+  await page.setViewportSize({ width: 718, height: 1040 });
+  const klipp = await page.evaluate(() => { const r = document.querySelector('.tabellram'); return r ? [r.scrollHeight - r.clientHeight, r.scrollWidth - r.clientWidth] : [-1, -1]; });
+  if (klipp[0] || klipp[1]) errors.push(`utskriften klipper tabellen: ${klipp[0]}px rader och ${klipp[1]}px kolumner döljs`);
+  await page.emulateMedia({ media: 'screen' });
   await page.setViewportSize({ width: 375, height: 800 });
   // Datumet i överraden bröts vid bindestrecket i mobil ("2026-" / "09-18").
   const datum = await page.evaluate(() => [...document.querySelectorAll('.datum')].filter((d) => d.getClientRects().length > 1).length);
