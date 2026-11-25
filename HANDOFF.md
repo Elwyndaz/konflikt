@@ -107,3 +107,4 @@ Pushat till `main` (3d1a11d, 0934522), Pages-bygget klart. Live på https://orgu
 Svensk text genomläst och sidan prövad i headless Chromium med mörkt läge, reducerad rörelse, 200 % zoom vid 1280 och 390 px och tvingade färger, se `BACKLOG.md`. Tre fynd rättade: kopieringskvittot syntes inte i tvingade färger (test i `check_page.js`), `404.html` rullade i sidled vid 200 % zoom i mobil, och sidfotens "och" och "&" är kursiverade så att de läses som exempel. Mörkt läge finns inte på sajten och lades inte till.
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `index.html`.
+Pushat till `main` (d2d1781), Pages-bygget klart. Live på https://orgutveckling.se/konflikt/ och 404-sidan: samma preferenskontroll PASS (mörkt läge, reducerad rörelse, 200 % zoom vid 1280 och 390 px utan sidrullning, fokusringar i tvingade färger), och kopieringskvittot får systemfärgen Highlight i tvingade färger.
