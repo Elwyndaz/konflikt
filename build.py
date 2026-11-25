@@ -2,7 +2,7 @@
 Skriver en rad PASS eller kastar AssertionError med vad som är fel i datat.
 Sidan ligger på orgutveckling.se/konflikt och lånar sajtens /style.css direkt.
 """
-import json, re, sys
+import hashlib, json, re, sys
 from html import escape
 from pathlib import Path
 
@@ -72,7 +72,9 @@ ths = "".join(
 legend = "".join(f'<li><span class="grupp grupp-{k.lower()}">{k}</span> {v}</li>' for k, v in GROUPS.items())
 
 page = (ROOT / "template.html").read_text(encoding="utf-8")
-for key, val in {"{{ths}}": ths, "{{rows}}": "\n".join(out), "{{legend}}": legend, "{{n}}": str(len(rows)), "{{checked}}": f'<span class="datum">{CHECKED}</span>'}.items():
+for key, val in {"{{ths}}": ths, "{{rows}}": "\n".join(out), "{{legend}}": legend, "{{n}}": str(len(rows)), "{{checked}}": f'<span class="datum">{CHECKED}</span>',
+                 # Cloudflare framför Pages cachar app.js i 4 timmar: innehållshash i adressen, så en ändring når fram direkt.
+                 "{{appv}}": hashlib.sha256((ROOT / "app.js").read_bytes()).hexdigest()[:8]}.items():
     assert key in page, f"mallen saknar {key}"
     page = page.replace(key, val)
 assert "{{" not in page, "oersatt platshållare i mallen"

@@ -39,6 +39,8 @@ const FILES = {
 
   expect('antal rader', await page.locator('tbody tr').count(), JSON.parse(fs.readFileSync(path.join(__dirname, 'sources.json'), 'utf8')).length);
   expect('startordning', await first(), 'Jordan, Konfliktkunskapens ABC');
+  // Cloudflare cachar app.js i 4 timmar: adressen ska bära hashen av den aktuella filen, annars får besökare den gamla.
+  expect('app.js-version', await page.locator('script[src^="app.js"]').getAttribute('src'), 'app.js?v=' + require('crypto').createHash('sha256').update(fs.readFileSync(FILES['/konflikt/app.js'][0])).digest('hex').slice(0, 8));
   // Förhandsbilden vid delning stod med ett fast antal texter och följde inte med när en källa lades till.
   expect('description = og:description', await page.evaluate(() => document.querySelector('meta[name=description]')?.getAttribute('content') ?? null), await page.locator('meta[property="og:description"]').getAttribute('content'));
   expect('antal i og:description', (await page.locator('meta[property="og:description"]').getAttribute('content') || '').split(' ')[0], String(await page.locator('tbody tr').count()));

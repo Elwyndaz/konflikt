@@ -97,6 +97,6 @@ Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PAS
 
 ## Webbläsarrunda 2026-11-25, grenen `xb/2026-11-25`
 
-Sidan prövad i WebKit (Playwright, playwright-core 1.64.1, webkit-2370, iPhone 13-profil) och Firefox (firefox-1555, 1440 px) mot Chromium: live för läsning, lokalt med `check_page.js` omkörd i varje motor. Ett fynd rättat: tabbat fokus i översta raden doldes under sidhuvudet i WebKit och Firefox, se `BACKLOG.md`. Utskriftsbredden i WebKit och Firefox lämnad som P3. Ingen riktig iPhone prövad.
+Sidan prövad i WebKit (Playwright, playwright-core 1.64.1, webkit-2370, iPhone 13-profil) och Firefox (firefox-1555, 1440 px) mot Chromium: live för läsning, lokalt med `check_page.js` omkörd i varje motor. Ett fynd rättat: tabbat fokus i översta raden doldes under sidhuvudet i WebKit och Firefox, se `BACKLOG.md`. Utskriftsbredden i WebKit och Firefox lämnad som P3. Ingen riktig iPhone prövad. Livekontrollen visade att Cloudflare cachar `app.js` i 4 timmar, så `build.py` versionerar nu adressen med filens hash.
 
 Verifierat: `build.py` PASS (42 rader), `tsc --strict` PASS, `check_page.js` PASS och FAIL mot den gamla `app.js`, fokuskontrollen 0 dolda i WebKit, Firefox och Chromium.
