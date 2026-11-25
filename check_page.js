@@ -40,6 +40,7 @@ const FILES = {
   expect('antal rader', await page.locator('tbody tr').count(), JSON.parse(fs.readFileSync(path.join(__dirname, 'sources.json'), 'utf8')).length);
   expect('startordning', await first(), 'Jordan, Konfliktkunskapens ABC');
   // Förhandsbilden vid delning stod med ett fast antal texter och följde inte med när en källa lades till.
+  expect('description = og:description', await page.evaluate(() => document.querySelector('meta[name=description]')?.getAttribute('content') ?? null), await page.locator('meta[property="og:description"]').getAttribute('content'));
   expect('antal i og:description', (await page.locator('meta[property="og:description"]').getAttribute('content') || '').split(' ')[0], String(await page.locator('tbody tr').count()));
 
   const cit = sortBy('Citeringar');
